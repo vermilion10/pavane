@@ -81,20 +81,26 @@ public sealed class RpcRouter(ILogger<RpcRouter> log)
     }
 
     // builds a default instance of the method's response type, populating a `system` (SystemInfo) field with the current server time when present.
+    // other singular message fields get an empty instance, because the client passes them straight to UpdateStored and a missing one surfaces later as a null reference.
     // `common` is left null on purpose, an empty CommonResponse merged client-side could wipe player state.
     private static byte[] BuildStub(MethodDescriptor method)
     {
         var msg = (IMessage)Activator.CreateInstance(method.OutputType.ClrType)!;
         foreach (var field in method.OutputType.Fields.InFieldNumberOrder())
         {
-            if (field.FieldType == FieldType.Message
-                && field.Name == "system"
-                && field.MessageType.ClrType == typeof(ScoreSystemV1.SystemInfo))
+            if (field.FieldType != FieldType.Message || field.IsRepeated || field.IsMap || field.Name == "common")
+                continue;
+
+            if (field.Name == "system" && field.MessageType.ClrType == typeof(ScoreSystemV1.SystemInfo))
             {
                 field.Accessor.SetValue(msg, new ScoreSystemV1.SystemInfo
                 {
                     ServerTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
                 });
+            }
+            else
+            {
+                field.Accessor.SetValue(msg, Activator.CreateInstance(field.MessageType.ClrType));
             }
         }
         return msg.ToByteArray();

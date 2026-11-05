@@ -1,4 +1,5 @@
 using Takasho.Schema.Score.PlayerApi;
+using CharacterV1 = Takasho.Schema.Score.ResourceCn.Character.V1;
 using PlayerV1 = Takasho.Schema.Score.ResourceCn.Player.V1;
 using SystemV1 = Takasho.Schema.Score.ResourceCn.System.V1;
 
@@ -9,6 +10,12 @@ namespace Pavane.GameServer;
 // ShutdownV1 just tells the client the service is open (no charge/refund windows), which it polls on boot.
 public static class LoginHandlers
 {
+    // TutorialManager treats any step above 12 as OpeningStep.Max, which skips the opening story and its ChapterMaster lookup
+    private const long OpeningFinishedStep = 13;
+
+    // the character the client falls back to for the home background; it also indexes CharacterList[0], so the roster cannot be empty
+    private const long DefaultCharacterId = 101000001;
+
     public static LoginV1.Types.Response Login(string playerId, LoginV1.Types.Request _)
     {
         var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -29,9 +36,19 @@ public static class LoginHandlers
         {
             Player = player,
             Wallet = new PlayerV1.PlayerWalletResponse(),
-            TutorialInfo = new PlayerV1.PlayerTutorialInfo { PlayerId = playerId },
+            TutorialInfo = new PlayerV1.PlayerTutorialInfo { PlayerId = playerId, Step = OpeningFinishedStep },
             PlayerPreference = new Takasho.Schema.CommonFeatureset.Resource.PlayerPreference.V1.PlayerPreference(),
         };
+
+        common.BattleCharacters.Add(new CharacterV1.PlayerBattleCharacter
+        {
+            PlayerId = playerId,
+            BattleCharacterMasterId = DefaultCharacterId,
+            Rank = 1,
+            Grade = 1,
+            CreatedAt = now,
+            UpdatedAt = now,
+        });
 
         return new LoginV1.Types.Response
         {

@@ -280,6 +280,9 @@ app.MapPost("/auth/user-access-token", () => Results.Json(new
 // purchases are not available locally, so the store and wallet are empty
 app.MapGet("/iap/product", () => Results.Json(new { products = Array.Empty<object>() }));
 app.MapGet("/currency-exchange/wallet/user-balance", () => Results.Json(new { balances = Array.Empty<object>() }));
+// the SDK parses this as StoreBalanceResponseEntity, and any non-JSON reply fails the balance call and hangs the home load after MonthlyCheckin
+app.MapGet("/currency-exchange/user-balance", () => Results.Json(new { userId = "10000001", balances = Array.Empty<object>() }));
+app.MapGet("/currency-exchange/user-balance/ts", () => Results.Json(new { userId = "10000001", balances = Array.Empty<object>() }));
 app.MapGet("/announcement/post", () => Results.Json(new { title = "", content = "", canSkip = true }));
 
 static async Task<string> ReadBody(HttpContext ctx)
@@ -291,7 +294,7 @@ static async Task<string> ReadBody(HttpContext ctx)
 
 app.MapFallback(async (HttpContext ctx) =>
 {
-    log.LogDebug("no route matched: {Method} {Host} {Uri} body={Body}", ctx.Request.Method, ctx.Request.Host, ctx.Request.Path + ctx.Request.QueryString, await ReadBody(ctx));
+    log.LogWarning("no route matched: {Method} {Host} {Uri} body={Body}", ctx.Request.Method, ctx.Request.Host, ctx.Request.Path + ctx.Request.QueryString, await ReadBody(ctx));
     return Results.Text("no route", statusCode: StatusCodes.Status404NotFound);
 });
 
