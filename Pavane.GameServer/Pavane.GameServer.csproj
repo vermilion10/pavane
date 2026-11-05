@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\Pavane.Common\Pavane.Common.csproj" />
+    <ProjectReference Include="..\Pavane.Protocol\Pavane.Protocol.csproj" />
+  </ItemGroup>
+</Project>

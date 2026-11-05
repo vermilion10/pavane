@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <base href="http://localhost/"> -->
+  <!-- <base href="https://lcmx-pp-cdn.mobage.cn/" target="_blank"> -->
+  <link rel="icon" href="../favicon.ico">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1,user-scalable=0,initial-scale=1">
+  <title>work</title>
+  <link href="../static_v2.9.1/css/reset.css" rel="stylesheet">
+  <link href="../static_v2.9.1/css/base.css" rel="stylesheet">
+  <link href="../static_v2.9.1/css/cn.css" rel="stylesheet">
+  <script type="text/javascript" src="../static_v2.9.1/js/libs/onerror.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <div class="wrap wrap-global" v-show="showContentPage" v-cloak>
+      <div id="includeContent" @scroll="readContent">
+        <div id="content" v-html="agreementContent"></div>
+      </div>
+      <div id="footer">
+        <div class="checkIconBox" v-show="!showBackBtn">
+          <input type="checkbox" name="is_agree" class="is_agree" v-model="checkBoxStatus" @change="readContent">
+          <label :class="['checkIcon', iconShake]" @animationend="removeShake"></label>
+          <span>{{$label("common.isAgree")}}</span>
+        </div>
+        <div :class="['btn agree', agreeAbleClass]" v-show="!showBackBtn" @click="goNext">{{$label("common.agree")}}</div>
+        <div class="btn back" v-show="showBackBtn" @click="goBack">{{$label("common.return")}}</div>
+      </div>
+      <div class="arrow" v-show="downArrowShow"></div>
+      <div :class="['tip', 'fade-leave-active', 'fade-leave-to', tipClass]" @animationend="removeTip">{{tipErrorText}}</div>
+    </div>
+
+    <!-- for kr start-->
+    <div class="wrap" v-show="showContentPageKr" v-cloak>
+      <div id="includeContentKr0" @scroll="readContentKr(0)">
+        <div id="content0" v-html="agreementContentKr0"></div>
+      </div>
+      <div id="includeContentKr1" @scroll="readContentKr(1)">
+        <div id="content1" v-html="agreementContentKr1"></div>
+      </div>      
+      <div id="footerKr" v-show="showContentPageKr">
+        <div class="checkIconBox" v-show="!showBackBtnKr">
+          <input type="checkbox" name="is_agree" class="is_agree" v-model="checkBoxStatus0" @change="readContentKr(0)">
+          <label :class="['checkIcon', iconShake, iconShake0]" @animationend="removeShake0"></label>
+          <span>{{$label("common.isAgree")}}</span>
+        </div>
+      </div>
+      <div id="footerKr1" v-show="showContentPageKr">
+        <div class="checkIconBox" v-show="!showBackBtnKr">
+          <input type="checkbox" name="is_agree" class="is_agree" v-model="checkBoxStatus1" @change="readContentKr(1)">
+          <label :class="['checkIcon', iconShake, iconShake1]" @animationend="removeShake1"></label>
+          <span>{{$label("common.isAgree")}}</span>
+        </div>
+      </div>   
+      <div class="footerKrBtn">
+        <div :class="['btn agree', agreeAbleClass]" v-show="!showBackBtnKr" @click="goNextKr">{{$label("common.agree")}}</div>
+      </div>  
+
+      <div class="arrow" v-show="downArrowShow"></div>
+      <div :class="['tip', 'fade-leave-active', 'fade-leave-to', tipClass]" @animationend="removeTip">{{tipErrorText}}</div>
+    </div>
+
+    <div class="loading" v-show="showLoading">
+      <div class="circle circle1">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="circle circle2">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="circle circle3">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="slide-img" v-show="showSlideImg" v-cloak>
+      <img src="../static_v2.9.1/img/slide.gif" alt="">
+    </div>
+  </div>
+
+  <!-- <script src="../static/js/libs/jquery.min.js"></script> -->
+  <!-- <script src="../static/js/libs/base.js?v=1"></script> -->
+
+  <!-- <script type="text/javascript" src="../static_v2.9.0/js/libs/lang/lang.js"></script> -->
+  <!-- <script type="text/javascript" :src="'./i18n/'+pageCurrentStatus.region+'.json'"></script> -->
+  <script type="text/javascript" src="../static_v2.9.1/js/libs/vue.min.js"></script>
+  <script type="text/javascript" src="../static_v2.9.1/js/libs/axios.min.js"></script>
+  <script type="text/javascript" src="../static_v2.9.1/js/libs/common.js"></script>
+  <script type="text/javascript" src="../static_v2.9.1/js/libs/heart.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Pavane.Common/Pavane.Common.csproj" />
+  <Project Path="Pavane.DispatchServer/Pavane.DispatchServer.csproj" />
+  <Project Path="Pavane.GameServer/Pavane.GameServer.csproj" />
+  <Project Path="Pavane.Protocol/Pavane.Protocol.csproj" />
+  <Project Path="Pavane.SdkServer/Pavane.SdkServer.csproj" />
+</Solution>

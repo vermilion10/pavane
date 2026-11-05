@@ -1,0 +1,41 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# Rider / VS / VS Code
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.DotSettings.user
+
+# Test / coverage
+[Tt]est[Rr]esult*/
+*.coverage
+*.trx
+
+# NuGet
+*.nupkg
+packages/
+.packages/
+
+# Local environment and secrets (e.g. PAVANE_HTTPS_PFX material, captured values)
+*.pfx
+*.p12
+*.key
+*.pem
+.env
+.env.*
+appsettings.*.local.json
+
+# Reverse-engineering notes with captured key material (keep local, not for publishing)
+REALMS.md
+
+# OS cruft
+Thumbs.db
+.DS_Store

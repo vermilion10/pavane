@@ -1,0 +1,201 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+table {
+    width: 95%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    list-style: none;
+    background: none;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #aba7b1;
+    list-style: none;
+    outline: none;
+    -moz-outline-style: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+a span {
+    color: #aaa !important;
+    text-decoration: underline;
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.allPage {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0.667vw 2.667vw;
+    position: relative;
+    font-size: 1.6vw;
+}
+
+.allPage .title {
+    padding: 0.667vw;
+    font-size: 2.4vw;
+    height: 7.333vw;
+    color: #393939;
+    font-weight: 700;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    text-align: left;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.allPage .index .all.title {
+    display: block;
+    padding: 2.667vw 0 1.333vw;
+    font-size: 24PX;
+    color: #ff5f00;
+    font-weight: 400;
+    text-align: center;
+    overflow: visible;
+}
+
+.allPage .index .content {
+    line-height: 5.333vw;
+    font-size: 2.4vw;
+    padding: 2.667vw;
+}
+
+.allPage .index .link {
+    margin: 0.267vw;
+    color: #35c0bf;
+    text-decoration: underline;
+}
+
+.allPage .return-btn {
+    color: #ff5f00;
+    font-size: 18px;
+    right: 8%;
+}
+
+.allPage .button {
+    position: absolute;
+    bottom: 4vw;
+    width: 46%;
+    height: 8vw;
+    line-height: 8vw;
+    background-color: #fff;
+    border: solid 1px #bbbbbb;
+    border-radius: 0.533vw;
+    text-align: center;
+    font-size: 2.667vw;
+    color: #85888e;
+    left: 3%;
+}
+
+.allPage .button.success-btn {
+    color: #ff5f00;
+    left: 51%;
+}
+
+@media (orientation: portrait) {
+
+    .allPage {
+        padding: 5px 20px;
+        font-size: 14px;
+    }
+
+
+    .allPage .title {
+        padding: 5px 0;
+        font-size: 16px;
+        height: 50px;
+    }
+
+    .allPage .index .all.title {
+        display: block;
+        padding: 20px 0 10px;
+        font-size: 22PX;
+        color: #ff5f00;
+        font-weight: 400;
+        text-align: center;
+        overflow: visible;
+    }
+
+    .allPage .index .content {
+        line-height: 40px;
+        font-size: 16px;
+        padding: 20px 10px;
+    }
+
+    .allPage .index .link {
+        color: #35c0bf;
+        text-decoration: underline;
+        margin: 0 2px;
+    }
+
+    .allPage .button {
+        left: 0;
+        right: 0;
+        position: absolute;
+        bottom: 100px;
+        float: left;
+        width: 90%;
+        height: 50px;
+        line-height: 50px;
+        background-color: #fff;
+        border: solid 1px #bbbbbb;
+        border-radius: 4px;
+        text-align: center;
+        margin: auto;
+        font-size: 20px;
+        color: #85888e;
+    }
+
+    .allPage .button.success-btn {
+        left: 0;
+        right: 0;
+        color: #ff5f00;
+        bottom: 40px;
+    }
+}
